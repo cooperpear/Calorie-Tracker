@@ -78,8 +78,11 @@ const UICtrl = (function () {
     const UISelectors = {
         itemList: '#item-list',
         addBtn: '.add-btn',
+        updateBtn: '.update-btn',
+        deleteBtn: '.delete-btn',
+        backBtn: '.back-btn',
         itemNameInput: '#item-name',
-        itemCalorieInput: '#item-calories',
+        itemCaloriesInput: '#item-calories',
         totalCalories: '.total-calories'
     }
 
@@ -144,6 +147,15 @@ const UICtrl = (function () {
             document.querySelector(UISelectors.totalCalories).textContent = totalCalories;
         },
 
+        clearEditState: function () {
+            UICtrl.clearInput();
+            document.querySelector(UISelectors.updateBtn).style.display = 'none';
+            document.querySelector(UISelectors.deleteBtn).style.display = 'none';
+            document.querySelector(UISelectors.backBtn).style.display = 'none';
+            document.querySelector(UISelectors.addBtn).style.display = 'inline';
+
+        },
+
         //UISelectors currently private due to scope
         //Create UISelectors public method
         getSelectors: function () {
@@ -162,6 +174,9 @@ const App = (function (ItemCtrl, UICtrl) {
 
         //Add item event
         document.querySelector(UISelectors.addBtn).addEventListener('click', itemAddSubmit);
+
+        //Edit icon click event
+        document.querySelector(UISelectors.itemList).addEventListener('click', itemUpdateSubmit);
     }
 
     //Add item submit
@@ -186,10 +201,27 @@ const App = (function (ItemCtrl, UICtrl) {
         e.preventDefault();
     }
 
+    //Update  item submit
+    const itemUpdateSubmit = function (e) {
+        //IF event target contains the class 'edit-item' 
+        if (e.target.classList.contains('edit-item')) {
+            //THEN get list item id (item-0, item-1...)
+            const listId = e.target.parentNode.parentNode.id;
+            //Break into an array by "splitting it with the dash"
+            const listIdArray = listId.split('-');
+        }
+
+        e.preventDefault();
+
+    }
+
     //Public methods
     return {
         init: function () {
             console.log('Initializing app...');
+
+            //Clear edite state/ set initial state
+            UICtrl.clearEditState();
 
             //Fetch items from data structure (state)
             const items = ItemCtrl.getItems();
@@ -201,6 +233,11 @@ const App = (function (ItemCtrl, UICtrl) {
                 //Populate list with items
                 UICtrl.populateItemList(items);
             }
+
+            //Get total calories
+            const totalCalories = ItemCtrl.getTotalCalories();
+            //Add total calories to UI
+            UICtrl.showTotalCalories(totalCalories);
 
             //Load event listeners
             loadEventListeners();
