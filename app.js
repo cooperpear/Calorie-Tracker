@@ -19,7 +19,7 @@ const ItemCtrl = (function () {
         currentItem: null,
         totalCalories: 0
     }
-
+    //Public Methods
     return {
         logData: function () {
             return data;
@@ -30,9 +30,23 @@ const ItemCtrl = (function () {
 //UI Controller
 const UICtrl = (function () {
 
+    //Public methods
+    return {
+
+    }
 })();
 
 //App Controller
 const App = (function (ItemCtrl, UICtrl) {
 
+    //Public methods
+    return {
+        init: function () {
+            console.log('Initializing app...');
+        }
+    }
 })(ItemCtrl, UICtrl);
+
+
+//Initialize App
+App.init();
