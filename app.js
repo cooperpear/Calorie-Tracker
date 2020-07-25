@@ -92,6 +92,29 @@ const UICtrl = (function () {
             }
         },
 
+        //Create addListItem function
+        addListItem: function (item) {
+            //Create li element
+            const li = document.createElement('li');
+            //Add class
+            li.className = 'collection-item';
+            //Add ID
+            li.id = `item-${item.id}`;
+            //Add HTML
+            li.innerHTML = `<strong>${item.name}: </strong> <em>${item.calories} Calories</em>
+            <a href="#" class="secondary-content">
+              <i class="edit-item fa fa-pencil"></i>
+            </a>`;
+            //Insert item into DOM
+            document.querySelector(UISelectors.itemList).insertAdjacentElement('beforeend', li)
+        },
+
+        //Create clearInput function
+        clearInput: function () {
+            document.querySelector(UISelectors.itemNameInput).value = '';
+            document.querySelector(UISelectors.itemCaloriesInput).value = '';
+        },
+
         //UISelectors currently private due to scope
         //Create UISelectors public method
         getSelectors: function () {
@@ -121,6 +144,10 @@ const App = (function (ItemCtrl, UICtrl) {
         if (input.name !== '' && input.calories !== '') {
             //Add item 
             const newItem = ItemCtrl.addItem(input.name, input.calories);
+            //Add item to UI list
+            UICtrl.addListItem(newItem);
+            //Clear fields
+            UICtrl.clearInput();
         }
 
         e.preventDefault();
