@@ -61,6 +61,11 @@ const ItemCtrl = (function () {
             return found;
         },
 
+        //Create setCurrentItem function
+        setCurrentItem: function (item) {
+            data.currentItem = item;
+        },
+
         //Create getTotalCalories function
         getTotalCalories: function () {
             //init total (data structure)
@@ -229,13 +234,15 @@ const App = (function (ItemCtrl, UICtrl) {
             const itemToEdit = ItemCtrl.getItemById(id);
             //Set current item
             ItemCtrl.setCurrentItem(itemToEdit);
+            //Add item to form
+            UICtrl.addItemToForm();
         }
 
         e.preventDefault();
 
     }
 
-    //Public methods
+    //Public methods via return
     return {
         init: function () {
             console.log('Initializing app...');
