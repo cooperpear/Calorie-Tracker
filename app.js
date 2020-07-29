@@ -43,7 +43,7 @@ const ItemCtrl = (function () {
             //Push new item into data structure array
             data.items.push(newItem);
 
-            //Make newItem public for later use
+            //Make newItem public for later use by user
             return newItem;
         },
 
