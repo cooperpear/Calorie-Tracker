@@ -66,6 +66,11 @@ const ItemCtrl = (function () {
             data.currentItem = item;
         },
 
+        //Create getCurrentItem function
+        getCurrentItem: function () {
+            return data.currentItem;
+        },
+
         //Create getTotalCalories function
         getTotalCalories: function () {
             //init total (data structure)
@@ -156,6 +161,13 @@ const UICtrl = (function () {
             document.querySelector(UISelectors.itemNameInput).value = '';
             document.querySelector(UISelectors.itemCaloriesInput).value = '';
         },
+
+        //Create addItemToForm function
+        addItemToForm: function () {
+            document.querySelector(UISelectors.itemNameInput).value = ItemCtrl.getCurrentItem().name;
+            document.querySelector(UISelectors.itemNameInput).value = ItemCtrl.getCurrentItem().calories;
+        },
+
 
         //Create hideList function when no items are present in items array
         hideList: function () {
