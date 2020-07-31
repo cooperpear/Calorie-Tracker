@@ -2,6 +2,7 @@
 Calorie Tracker is a demonstration in Vanilla Javascript. It uses the module pattern of design. It utilizes local storage for back end purposes. It's structure resembles that of the React framework, managing state and properties from a central point. Materialize is used for the front end.  
 
 ## Deployed
+https://cooperpear.github.io/Calorie-Tracker/
 
 ## Built With
 Javascript (Vanilla)<br>
@@ -17,7 +18,7 @@ Front end Styling.
 Cooper Pearson
 
 ## Screenshots
-![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
+![Alt text](https://github.com/cooperpear/Calorie-Tracker/blob/master/tracalorie.png?raw=true "Optional Title")
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
